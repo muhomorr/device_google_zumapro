@@ -127,9 +127,6 @@ SHARED_MODEM_PLATFORM_VENDOR := lassen
 
 else # ifneq ($(BOARD_WITHOUT_RADIO),true)
 
-# Pixel Logger
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/logger_app
-
 endif # ifneq ($(BOARD_WITHOUT_RADIO),true)
 
 # Shared Modem Platform
@@ -220,21 +217,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
 
-# Device Manifest, Device Compatibility Matrix for Treble
-DEVICE_MANIFEST_FILE := \
-	device/google/zumapro/manifest.xml
-DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/zumapro/device_framework_matrix_product_8.xml
-DEVICE_MATRIX_FILE := \
-	device/google/zumapro/compatibility_matrix.xml
-
 BOARD_USE_CODEC2_AIDL := V1
-ifneq (,$(filter aosp_%,$(TARGET_PRODUCT)))
-DEVICE_MANIFEST_FILE += \
-	device/google/zumapro/manifest_media_aosp.xml
-else
-DEVICE_MANIFEST_FILE += \
-	device/google/zumapro/manifest_media.xml
-endif
+
 
 PRODUCT_PACKAGES += GosOverlay GosSettingsOverlay
 
@@ -772,9 +756,6 @@ include hardware/google/pixel/wifi_ext/device.mk
 
 # Battery Stats Viewer
 PRODUCT_PACKAGES_DEBUG += BatteryStatsViewer
-
-DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/gs-common/proprietary/android.hardware.gnss.xml
-DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/gs-common/proprietary/vendor.google.aam.xml
 
 # Keymint configuration
 PRODUCT_COPY_FILES += \
